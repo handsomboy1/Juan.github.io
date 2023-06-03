@@ -1,14 +1,253 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Cute H5 Page</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <style>
+        /* 全局样式 */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Microsoft YaHei", sans-serif;
+            color: #333;
+            background-color: #fff;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* 导航栏样式 */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 60px;
+            background-color: #ffc0cb;
+            box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-weight: normal;
+            font-size: 22px;
+            color: #fff;
+            text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.1);
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        /* 轮播图样式 */
+        .swiper-container {
+            margin-top: 60px;
+            height: 200px;
+            background-color: #fff;
+            box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .swiper-slide img {
+            display: block;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .swiper-pagination {
+            margin-top: 10px;
+            position: relative;
+        }
+
+        .swiper-pagination-bullet {
+            background-color: #fff;
+            opacity: .3;
+            width: 10px;
+            height: 10px;
+            border-radius: 5px;
+            margin: 0 5px;
+        }
+
+        .swiper-pagination-bullet-active {
+            opacity: 1;
+        }
+
+        /* 视频播放器样式 */
+        .video-player {
+            margin: 30px auto 0;
+            width: 250px;
+            height: 150px;
+            background-color: #f8d7e6;
+            position: relative;
+            border-radius: 10px;
+            box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .video-player video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .video-control {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            visibility: hidden;
+            transition: visibility 0.3s, opacity 0.3s;
+            opacity: 0;
+        }
+
+        .video-player:hover .video-control, 
+        .video-player:focus .video-control {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .video-control button {
+            background-color: transparent;
+            color: #fff;
+            border: none;
+            margin: 0 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        /* 背景音乐样式 */
+        .music-player {
+            position: fixed;
+            right: 20px;
+            top: 80px;
+            text-align: center;
+        }
+
+        .music-player button {
+            background-color: transparent;
+            color: #fff;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .music-player audio {
+            display: none;
+        }
+
+    </style>
 </head>
 <body>
-    <div>
-        你好
+    <!-- 导航栏 -->
+    <div class="header">
+        <h1>Cute H5 Page</h1>
     </div>
+
+    <!-- 轮播图 -->
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="https://picsum.photos/id/41/600/250"></div>
+            <div class="swiper-slide"><img src="https://picsum.photos/id/42/600/250"></div>
+            <div class="swiper-slide"><img src="https://picsum.photos/id/43/600/250"></div>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+
+    <!-- 视频播放器 -->
+    <div class="video-player">
+        <video src="https://www.w3schools.com/tags/movie.mp4" poster="https://picsum.photos/id/44/500/300"></video>
+        <div class="video-control">
+            <button type="button">播放</button>
+            <button type="button">暂停</button>
+            <button type="button">全屏</button>
+        </div>
+    </div>
+
+    <!-- 背景音乐 -->
+    <div class="music-player">
+        <audio src="http://other.web.rh01.sycdn.kuwo.cn/resource/n1/17/9/992643852.mp3"></audio>
+        <button type="button" title="播放/暂停">♫</button>
+    </div>
+
+    <!-- 引入脚本文件 -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        // 轮播图
+        var swiper = new Swiper('.swiper-container', {
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            autoplay: {
+                delay: 3000,
+            },
+        });
+
+        // 视频播放器
+        var videoPlayer = document.querySelector('.video-player');
+        var videoElem = videoPlayer.querySelector('video');
+        var controlElem = videoPlayer.querySelector('.video-control');
+        var playBtn = controlElem.querySelector('button:first-of-type');
+        var pauseBtn = controlElem.querySelector('button:nth-of-type(2)');
+        var fullScreenBtn = controlElem.querySelector('button:last-of-type');
+
+        videoElem.addEventListener('click', function () {
+            this.play();
+        });
+
+        videoElem.addEventListener('play', function () {
+            playBtn.disabled = true;
+            pauseBtn.disabled = false;
+            fullScreenBtn.disabled = false;
+        });
+
+        videoElem.addEventListener('pause', function () {
+            playBtn.disabled = false;
+            pauseBtn.disabled = true;
+            fullScreenBtn.disabled = false;
+        });
+
+        playBtn.addEventListener('click', function () {
+            videoElem.play();
+        });
+
+        pauseBtn.addEventListener('click', function () {
+            videoElem.pause();
+        });
+
+        fullScreenBtn.addEventListener('click', function () {
+            videoElem.requestFullscreen();
+        });
+
+        // 背景音乐
+        var musicPlayer = document.querySelector('.music-player');
+        var audioElem = musicPlayer.querySelector('audio');
+        var musicBtn = musicPlayer.querySelector('button');
+
+        musicBtn.addEventListener('click', function () {
+            if (audioElem.paused) {
+                audioElem.play();
+                this.textContent = "♫";
+            } else {
+                audioElem.pause();
+                this.textContent = "♬";
+            }
+        });
+    </script>
 </body>
 </html>
+
