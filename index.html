@@ -233,128 +233,6 @@
           <button type="button">全屏</button>
       </div>
   </div>
-  
-      <!-- 背景音乐 -->
-      <audio src="./image/music/怀抱.mp3" id="bg-music" muted autoplay loop></audio>
-      <div id="music-btn" class="music-btn">
-        <i class="fa fa-music"></i>
-      </div>
-    </div>
-  
-    <!-- jQuery &amp; Font Awesome 图标库引用 -->
-    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdn.bootcss.com/font-awesome/5.11.2/js/all.min.js"></script>
-  
-    <script>
-      // 显示当前时间
-      setInterval(function() {
-        const now = new Date();
-      const year = now.getFullYear();
-      const month = now.getMonth() + 1;
-      const date = now.getDate();
-      const hours = now.getHours();
-      const minutes = now.getMinutes();
-      const seconds = now.getSeconds();
-      const day = now.getDay();
-      const weekdays = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
-      const timeStr = `今天是: ${year}年${month}月${date}日 ${hours}:${minutes}:${seconds} ${weekdays[day]} 耶！`;
-      $('.time').text(timeStr);
-      }, 1000);
-       // 点击背景音乐按钮控制音乐
-      var music = document.getElementById("bg-music");
-      music.play();
-      $('#music-btn').on('click', function() {
-        if (music.paused) {
-          music.play();
-          $('#music-btn i').removeClass('fa-volume-off').addClass('fa-volume-up');
-        } else {
-          music.pause();
-          $('#music-btn i').removeClass('fa-volume-up').addClass('fa-volume-off');
-        }
-      });
-      // 轮播图自动播放
-      var carouselIndex = 0;
-      var carouselInterval = setInterval(function() {
-        changeSlide(++carouselIndex % $('.carousel img').length);
-      }, 3000);
-  
-      // 轮播图切换
-      function changeSlide(index) {
-        $('.carousel img').eq(index).fadeIn(0).siblings().fadeOut(0);
-      }
-        // 视频播放器
-        var videoPlayer = document.querySelector('.video-player');
-          var videoElem = videoPlayer.querySelector('video');
-          var controlElem = videoPlayer.querySelector('.video-control');
-          var playBtn = controlElem.querySelector('button:first-of-type');
-          var pauseBtn = controlElem.querySelector('button:nth-of-type(2)');
-          var fullScreenBtn = controlElem.querySelector('button:last-of-type');
-  
-          videoElem.addEventListener('click', function () {
-              this.play();
-          });
-  
-          videoElem.addEventListener('play', function () {
-              music.pause();
-              playBtn.disabled = true;
-              pauseBtn.disabled = false;
-              fullScreenBtn.disabled = false;
-          });
-  
-          videoElem.addEventListener('pause', function () {
-              music.play();
-              playBtn.disabled = false;
-              pauseBtn.disabled = true;
-              fullScreenBtn.disabled = false;
-          });
-  
-          playBtn.addEventListener('click', function () {
-              videoElem.play();
-          });
-  
-          pauseBtn.addEventListener('click', function () {
-              videoElem.pause();
-          });
-  
-          fullScreenBtn.addEventListener('click', function () {
-              videoElem.requestFullscreen();
-          });
-     
-  
-      // 点击图片放大
-      $('.carousel img').on('click', function() {
-        var imgUrl = $(this).attr('data-fullsize');
-        $('#modal img').attr('src', imgUrl);
-        $('#modal').show();
-        clearInterval(carouselInterval);
-      });
-  
-      // 点击关闭模态框
-      $('#modal').on('click', function() {
-        $(this).hide();
-        carouselInterval = setInterval(function() {
-          changeSlide(++carouselIndex % $('.carousel img').length);
-        }, 3000);
-      });
-    </script>
-  </body>
-  </html>
-  
-    <div id="modal">
-      <img src="">
-    </div>
-
-   <!-- 视频播放器 -->
-   <div class="site">The Goddess video Section</div>
-   <div class="video-player">
-    <video src="./image/video/WeChat2.0.mp4" poster="./image/banner/微信图片_20230604110252.jpg"></video>
-    <div class="video-control">
-        <button type="button">播放</button>
-        <button type="button">暂停</button>
-        <button type="button">全屏</button>
-    </div>
-</div>
-
     <!-- 背景音乐 -->
     <audio src="./image/music/怀抱.mp3" id="bg-music" autoplay loop></audio>
     <div id="music-btn" class="music-btn">
@@ -367,21 +245,23 @@
   <script src="https://cdn.bootcss.com/font-awesome/5.11.2/js/all.min.js"></script>
 
   <script>
-    var music = document.getElementById("bg-music");
-    music.play();
     // 显示当前时间
     setInterval(function() {
-      var now = new Date();
-      var hour = now.getHours();
-      var minute = now.getMinutes();
-      var second = now.getSeconds();
-      var day = now.getDay();
-      var weekday = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
-      var timeStr = hour + ':' + minute + ':' + second + ' ' + weekday[day];
-      $('.time').text(timeStr);
+      const now = new Date();
+    const year = now.getFullYear();
+    const month = now.getMonth() + 1;
+    const date = now.getDate();
+    const hours = now.getHours();
+    const minutes = now.getMinutes();
+    const seconds = now.getSeconds();
+    const day = now.getDay();
+    const weekdays = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
+    const timeStr = `今天是: ${year}年${month}月${date}日 ${hours}:${minutes}:${seconds} ${weekdays[day]} 耶！`;
+    $('.time').text(timeStr);
     }, 1000);
      // 点击背景音乐按钮控制音乐
-     
+    var music = document.getElementById("bg-music");
+    music.play();
     $('#music-btn').on('click', function() {
       if (music.paused) {
         music.play();
