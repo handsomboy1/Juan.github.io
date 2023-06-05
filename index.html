@@ -205,7 +205,349 @@
       <img src="./image/banner/微信图片_20230604110319.jpg" alt="轮播图3" data-fullsize="./image/banner/微信图片_20230604110319.jpg">
     </div>
 
-    <!-- 图片放大 -->
+    <!-- 图片放大 --><!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <title>De-lovely</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      /* 移动端适配 CSS */
+      body {
+        margin: 0;
+        font-size: 16px;
+        background-color: #ffe5e5;
+      }
+  
+      .container {
+        max-width: 100%;
+        margin: 0 20px;
+        padding: 0 20px;
+        box-sizing: border-box;
+        margin-top:70px;
+      }
+      .site{
+          border-radius: 12px;
+          height: 40px;
+          margin-bottom: 14px;
+          line-height: 40px;
+          text-align: center;
+          font-size: 22px;
+          background-color: #e7f1ff;
+          color: #fda7a7;
+      }
+      h1 {
+        text-align: center;
+        margin: 40px 0;
+      }
+  
+      /* 导航栏 CSS */
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 60px;
+        background: #ffebeb;
+        box-shadow: rgba(0, 0, 0, 0.2) 0 2px 5px 0;
+        z-index: 999;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+  
+      .navbar .title {
+        position: absolute;
+        top: 4px;
+        left: -3px;
+        font-size: 20px;
+        font-weight: bold;
+        margin: 0;
+        padding-left: 20px;
+        color:#b8a973;
+      }
+  
+      .navbar .time {
+        height: 20px;
+        position: absolute;
+        right: 4px;
+        bottom: 3px;
+        font-size: 16px;
+        margin: 0;
+        color: #999;
+      }
+       /* 视频播放器样式 */
+       .video-player {
+              margin: 30px auto 0;
+              width: 250px;
+              height: 150px;
+              background-color: #f8d7e6;
+              position: relative;
+              border-radius: 10px;
+              box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+              overflow: hidden;
+          }
+  
+          .video-player video {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+          }
+  
+          .video-control {
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              width: 100%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              background-color: rgba(0, 0, 0, 0.5);
+              color: #fff;
+              visibility: hidden;
+              transition: visibility 0.3s, opacity 0.3s;
+              opacity: 0;
+          }
+  
+          .video-player:hover .video-control, 
+          .video-player:focus .video-control {
+              visibility: visible;
+              opacity: 1;
+          }
+  
+          .video-control button {
+              background-color: transparent;
+              color: #fff;
+              border: none;
+              margin: 0 10px;
+              font-size: 16px;
+              cursor: pointer;
+          }
+      /* 轮播图 CSS */
+      .carousel {
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 52px;
+      }
+  
+      .carousel img {
+        width: 334px;
+        height: 640px;
+        object-fit: cover;
+      }
+  
+      /* 图片放大 CSS */
+      #modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 9999;
+        text-align: center;
+      }
+  
+      #modal img {
+        max-width: 80%;
+        max-height: 70%;
+        margin-top: 10%;
+        border: 5px solid #FFF;
+        box-shadow: 0 0 50px #FFF;
+      }
+  
+      /* 视频播放器 CSS */
+      .video-player {
+        position: relative;
+        width: 100%;
+        height: 0;
+        padding-bottom: 168.25%;
+        margin-bottom: 40px;
+        overflow: hidden;
+      }
+  
+      .video-player iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+  
+      /* 背景音乐按钮 CSS */
+      .music-btn {
+        position: fixed;
+        right: 6px;
+        bottom: 34px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 999;
+        text-align: center;
+        line-height: 40px;
+        color: #FFF;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="navbar">
+      <h1 class="title">My Princess <small>要开心每一天哦！</small></h1>
+      <span class="time"></span>
+    </div>
+  
+    <div class="container">
+      <div class="site">The Goddess Photo Section</div>
+      <!-- 轮播图 -->
+      <div class="carousel">
+        <img src="./image/banner/微信图片_20230605174310.jpg" alt="轮播图1" data-fullsize="./image/banner/微信图片_20230605174310.jpg">
+        <img src="./image/banner/微信图片_20230605174305.jpg" alt="轮播图2" data-fullsize="./image/banner/微信图片_20230605174305.jpg">
+        <img src="./image/banner/微信图片_20230605174300.jpg" alt="轮播图3" data-fullsize="./image/banner/微信图片_20230605174300.jpg">
+        <img src="./image/banner/微信图片_20230605174255.jpg" alt="轮播图4" data-fullsize="./image/banner/微信图片_20230605174255.jpg">
+        <img src="./image/banner/微信图片_20230605174250.jpg" alt="轮播图5" data-fullsize="./image/banner/微信图片_20230605174250.jpg">
+        <img src="./image/banner/微信图片_20230605174245.jpg" alt="轮播图6" data-fullsize="./image/banner/微信图片_20230605174245.jpg">
+        <img src="./image/banner/微信图片_20230605174239.jpg" alt="轮播图7" data-fullsize="./image/banner/微信图片_20230605174239.jpg">
+        <img src="./image/banner/微信图片_20230605174234.jpg" alt="轮播图8" data-fullsize="./image/banner/微信图片_20230605174234.jpg">
+        <img src="./image/banner/微信图片_20230605174227.jpg" alt="轮播图9" data-fullsize="./image/banner/微信图片_20230605174227.jpg">
+        <img src="./image/banner/微信图片_20230604110201.jpg" alt="轮播图10" data-fullsize="./image/banner/微信图片_20230604110201.jpg">
+        <img src="./image/banner/微信图片_20230604110213.jpg" alt="轮播图11" data-fullsize="./image/banner/微信图片_20230604110213.jpg">
+        <img src="./image/banner/微信图片_20230604110221.jpg" alt="轮播图12" data-fullsize="./image/banner/微信图片_20230604110221.jpg">
+        <img src="./image/banner/微信图片_20230604110228.jpg" alt="轮播图13" data-fullsize="./image/banner/微信图片_20230604110228.jpg">
+        <img src="./image/banner/微信图片_20230604110234.jpg" alt="轮播图14" data-fullsize="./image/banner/微信图片_20230604110234.jpg">
+        <img src="./image/banner/微信图片_20230604110240.jpg" alt="轮播图15" data-fullsize="./image/banner/微信图片_20230604110240.jpg">
+        <img src="./image/banner/微信图片_20230604110247.jpg" alt="轮播图16" data-fullsize="./image/banner/微信图片_20230604110247.jpg">
+        <img src="./image/banner/微信图片_20230604110252.jpg" alt="轮播图17" data-fullsize="./image/banner/微信图片_20230604110252.jpg">
+        <img src="./image/banner/微信图片_20230604110305.jpg" alt="轮播图18" data-fullsize="./image/banner/微信图片_20230604110305.jpg">
+        <img src="./image/banner/微信图片_20230604110258.jpg" alt="轮播图19" data-fullsize="./image/banner/微信图片_20230604110258.jpg">
+        <img src="./image/banner/微信图片_20230604110310.jpg" alt="轮播图20" data-fullsize="./image/banner/微信图片_20230604110310.jpg">
+        <img src="./image/banner/微信图片_20230604110319.jpg" alt="轮播图21" data-fullsize="./image/banner/微信图片_20230604110319.jpg">
+      </div>
+  
+      <!-- 图片放大 -->
+      <div id="modal">
+        <img src="">
+      </div>
+  
+     <!-- 视频播放器 -->
+     <div class="site">The Goddess video Section</div>
+     <div class="video-player">
+      <video src="./image/video/WeChat.mp4" poster="./image/banner/微信图片_20230604110252.jpg"></video>
+      <div class="video-control">
+          <button type="button">播放</button>
+          <button type="button">暂停</button>
+          <button type="button">全屏</button>
+      </div>
+  </div>
+  
+      <!-- 背景音乐 -->
+      <audio src="./image/music/怀抱.mp3" id="bg-music" muted autoplay loop></audio>
+      <div id="music-btn" class="music-btn">
+        <i class="fa fa-music"></i>
+      </div>
+    </div>
+  
+    <!-- jQuery &amp; Font Awesome 图标库引用 -->
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/font-awesome/5.11.2/js/all.min.js"></script>
+  
+    <script>
+      // 显示当前时间
+      setInterval(function() {
+        const now = new Date();
+      const year = now.getFullYear();
+      const month = now.getMonth() + 1;
+      const date = now.getDate();
+      const hours = now.getHours();
+      const minutes = now.getMinutes();
+      const seconds = now.getSeconds();
+      const day = now.getDay();
+      const weekdays = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
+      const timeStr = `今天是: ${year}年${month}月${date}日 ${hours}:${minutes}:${seconds} ${weekdays[day]} 耶！`;
+      $('.time').text(timeStr);
+      }, 1000);
+       // 点击背景音乐按钮控制音乐
+      var music = document.getElementById("bg-music");
+      music.play();
+      $('#music-btn').on('click', function() {
+        if (music.paused) {
+          music.play();
+          $('#music-btn i').removeClass('fa-volume-off').addClass('fa-volume-up');
+        } else {
+          music.pause();
+          $('#music-btn i').removeClass('fa-volume-up').addClass('fa-volume-off');
+        }
+      });
+      // 轮播图自动播放
+      var carouselIndex = 0;
+      var carouselInterval = setInterval(function() {
+        changeSlide(++carouselIndex % $('.carousel img').length);
+      }, 3000);
+  
+      // 轮播图切换
+      function changeSlide(index) {
+        $('.carousel img').eq(index).fadeIn(0).siblings().fadeOut(0);
+      }
+        // 视频播放器
+        var videoPlayer = document.querySelector('.video-player');
+          var videoElem = videoPlayer.querySelector('video');
+          var controlElem = videoPlayer.querySelector('.video-control');
+          var playBtn = controlElem.querySelector('button:first-of-type');
+          var pauseBtn = controlElem.querySelector('button:nth-of-type(2)');
+          var fullScreenBtn = controlElem.querySelector('button:last-of-type');
+  
+          videoElem.addEventListener('click', function () {
+              this.play();
+          });
+  
+          videoElem.addEventListener('play', function () {
+              music.pause();
+              playBtn.disabled = true;
+              pauseBtn.disabled = false;
+              fullScreenBtn.disabled = false;
+          });
+  
+          videoElem.addEventListener('pause', function () {
+              music.play();
+              playBtn.disabled = false;
+              pauseBtn.disabled = true;
+              fullScreenBtn.disabled = false;
+          });
+  
+          playBtn.addEventListener('click', function () {
+              videoElem.play();
+          });
+  
+          pauseBtn.addEventListener('click', function () {
+              videoElem.pause();
+          });
+  
+          fullScreenBtn.addEventListener('click', function () {
+              videoElem.requestFullscreen();
+          });
+     
+  
+      // 点击图片放大
+      $('.carousel img').on('click', function() {
+        var imgUrl = $(this).attr('data-fullsize');
+        $('#modal img').attr('src', imgUrl);
+        $('#modal').show();
+        clearInterval(carouselInterval);
+      });
+  
+      // 点击关闭模态框
+      $('#modal').on('click', function() {
+        $(this).hide();
+        carouselInterval = setInterval(function() {
+          changeSlide(++carouselIndex % $('.carousel img').length);
+        }, 3000);
+      });
+    </script>
+  </body>
+  </html>
+  
     <div id="modal">
       <img src="">
     </div>
@@ -213,7 +555,7 @@
    <!-- 视频播放器 -->
    <div class="site">The Goddess video Section</div>
    <div class="video-player">
-    <video src="./image/video/WeChat.mp4" poster="./image/banner/微信图片_20230604110252.jpg"></video>
+    <video src="./image/video/WeChat2.0.mp4" poster="./image/banner/微信图片_20230604110252.jpg"></video>
     <div class="video-control">
         <button type="button">播放</button>
         <button type="button">暂停</button>
